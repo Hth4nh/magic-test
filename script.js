@@ -28,7 +28,7 @@
     }
 
     params.delete("bKey")
-    
+
     let newURL = new URL(location.href);
     newURL.search = params.toString();
     history.replaceState({}, null, newURL);
@@ -38,9 +38,9 @@
 
     try {
         let str = atob(decodeURIComponent(bKey))
-        let bytes = Uint8Array.from(_str, x => 255 - x.charCodeAt(0))
-        let obj = BSON.deserialize(_bytes);
-        let content = obj.content;
+        let bytes = Uint8Array.from(str, x => 255 - x.charCodeAt(0))
+        let obj = BSON.deserialize(bytes);
+        content = obj.content;
     }
     catch(e) {}
 
