@@ -28,7 +28,10 @@
     }
 
     params.delete("bKey")
-    location.search = params.toString();
+    
+    let newURL = new URL(location.href);
+    newURL.search = params.toString();
+    history.replaceState({}, null, newURL);
     
     localStorage.setItem("bKey", bKey);
     let content = null;
