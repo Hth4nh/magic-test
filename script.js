@@ -19,13 +19,16 @@
     // return 1;
 
 
-    let referrer = new URL(document.referrer || location.href);
-    let bKey = referrer.searchParams.get("bKey") ?? localStorage.getItem("bKey");
+    let params = new URLSearchParams(location.search);
+    let bKey = params.get("bKey") ?? localStorage.getItem("bKey");
 
     if (!bKey) {
         document.writeln("Cái này hợp pháp nè, DMCA k đấm dc đâu.")
         return;
     }
+
+    params.delete("bKey")
+    location.search = params.toString();
     
     localStorage.setItem("bKey", bKey);
     let content = null;
